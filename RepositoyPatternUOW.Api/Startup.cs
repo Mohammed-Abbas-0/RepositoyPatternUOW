@@ -8,7 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RepositoryPatternWithUOW.Core.IRepository;
 using RepositoryPatternWithUOW.EF;
+using RepositoryPatternWithUOW.EF.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +35,9 @@ namespace RepositoyPatternUOW.Api
             // Service To Add Database Connection...
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
                 b=>b.MigrationsAssembly(typeof (AppDbContext).Assembly.FullName)));
+            #endregion
+            #region Service Life Cycle
+            services.AddTransient(typeof (IGenericRepository<>),typeof (GenericRepository<>));
             #endregion
             services.AddSwaggerGen(c =>
             {
