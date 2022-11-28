@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: Metadata file 'D:\MyFiles\projects\RepositoryPattern-WebApi\RepositoyPatternUOW\RepositoryPatternWithUOW.EF\bin\Debug\net5.0\ref\RepositoryPatternWithUOW.EF.dll' could not be found
+dotnet_diagnostic.CS0006.severity = warning
