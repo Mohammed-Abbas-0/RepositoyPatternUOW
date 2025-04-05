@@ -27,5 +27,11 @@ namespace RepositoyPatternUOW.Api.Controllers
             List<int> BookIds = new List<int>{ 1,2,3};
             return Ok(await _bookRepositor.FindAllData(idx=> BookIds.Contains(idx.Id),new[] { "Authors" },1,1 ));
         }
+        [HttpGet("FindAllBookByOrder")]
+        public async Task<IActionResult> GetAllBookAppliesToOrderCondition()
+        {
+            List<int> BookIds = new List<int> { 1, 2, 3 };
+            return Ok(await _bookRepositor.FindAllDataByOrderSort(idx => BookIds.Contains(idx.Id), new[] { "Authors" },idx=>idx.Id,""));
+        }
     }
 }

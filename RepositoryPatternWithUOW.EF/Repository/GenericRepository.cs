@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RepositoryPatternWithUOW.Core.Consts;
 using RepositoryPatternWithUOW.Core.IRepository;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,23 @@ namespace RepositoryPatternWithUOW.EF.Repository
             if( skip == 0 || take == 0 )
                 return await query.Where(match).ToListAsync();
             return await query.Where(match).Skip(skip).Take(take).ToListAsync();
+        }
+
+        public async Task<IEnumerable<T>> FindAllDataByOrderSort
+            (
+                Expression<Func<T, bool>> expression, string[] includeItems,  
+                Expression<Func<T, object>> orderExpression,string orderType=""
+            )
+        {
+            //if (string.IsNullOrEmpty(orderType))
+                OrderBy orderBy = new OrderBy();
+            IQueryable<T> query = _db.Set<T>().Where(expression);
+            if (includeItems.Count() > 0)
+                foreach (string item in includeItems) query.Include(item);
+            if (orderExpression!=null)
+                if (orderType == orderBy.GetOrderAsc()) query = query.OrderBy(orderExpression);
+                else query = query.OrderByDescending(orderExpression);
+            return await query.ToListAsync();
         }
     }
 }

@@ -13,5 +13,6 @@ namespace RepositoryPatternWithUOW.Core.IRepository
         T Find(Expression<Func<T,bool>> match);
         T Find(Expression<Func<T,bool>> match,string[] includeItems = null);
         Task<IEnumerable<T>> FindAllData(Expression<Func<T,bool>> match, string[] includeItems = null, int skip = 0, int take = 0);
+        Task<IEnumerable<T>> FindAllDataByOrderSort(Expression<Func<T, bool>> expression, string[] includeItems,Expression<Func<T,object>> orderExpression, string orderType);
     }
 }

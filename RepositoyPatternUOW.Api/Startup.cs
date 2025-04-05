@@ -37,7 +37,8 @@ namespace RepositoyPatternUOW.Api
                 b=>b.MigrationsAssembly(typeof (AppDbContext).Assembly.FullName)));
             #endregion
             #region Service Life Cycle
-            services.AddTransient(typeof (IGenericRepository<>),typeof (GenericRepository<>));
+            services.AddScoped(typeof (IGenericRepository<>),typeof (GenericRepository<>));
+            services.AddScoped(typeof (IVehicleGeneric<>),typeof (VehicleGeneric<>));
             #endregion
             services.AddSwaggerGen(c =>
             {

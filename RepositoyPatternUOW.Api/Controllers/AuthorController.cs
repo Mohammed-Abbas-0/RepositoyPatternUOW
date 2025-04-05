@@ -16,7 +16,7 @@ namespace RepositoyPatternUOW.Api.Controllers
     {
         private readonly IGenericRepository<Author> _authorRepository;
         public AuthorController(IGenericRepository<Author> authorRepository) => _authorRepository = authorRepository;
-        
+
         [HttpGet]
         public async Task<IActionResult> GetAuthorDetailById(int Id)
         {
@@ -25,7 +25,7 @@ namespace RepositoyPatternUOW.Api.Controllers
         [HttpGet("FindByAuthorName")]
         public IActionResult FindAuthorName()
         {
-            return Ok(_authorRepository.Find(idx=> idx.AuthorName == "Hakem"));
+            return Ok(_authorRepository.Find(idx => idx.AuthorName == "Hakem"));
         }
 
     }

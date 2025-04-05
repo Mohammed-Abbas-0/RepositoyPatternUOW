@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RepositoryPatternWithUOW.EF;
 
 namespace RepositoryPatternWithUOW.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230113225635_MarketModel_Init_1")]
+    partial class MarketModel_Init_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +75,7 @@ namespace RepositoryPatternWithUOW.EF.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("price")
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -100,7 +102,7 @@ namespace RepositoryPatternWithUOW.EF.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("price")
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
